@@ -1,14 +1,13 @@
 class Solution {
+    private:
+        int sqrte(int n,long long x){
+            if(x*x<=n) return x;
+            else return sqrte(n,(x+(n/x))/2);
+        }
 public:
     int mySqrt(int x) {
-        if(x==0) return x;
-        int first=1,last=x;
-        while(first<=last){
-            int mid=first+(last-first)/2;
-            if(mid==x/mid) return mid;
-            else if(mid>x/mid) last=mid-1;
-            else first=mid+1;
-        }
-        return last;
+        long long n=x;
+        int a=sqrte(x,n);
+        return a;
     }
 };
