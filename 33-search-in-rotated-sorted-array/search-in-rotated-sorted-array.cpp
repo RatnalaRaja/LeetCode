@@ -1,25 +1,25 @@
 class Solution {
 public:
-    int search(vector<int>& arr, int target) {
-        int l=0;
-        int k=arr.size()-1;
-        //int a=arr.size();
-        while(l<=k){
-            int mid=l+(k-l)/2;
-            if(arr[mid]==target) return mid;
-             else if(arr[l]<=arr[mid]){
-               if(arr[l]<=target and target<=arr[mid]){
-                   k=mid-1;
-               }
-                   else {l=mid+1;
-               }
+    int search(vector<int>& nums, int target) {
+        int n=nums.size();
+        int l=0,e=n-1;
+        while(l<=e){
+            int mid=l+(e-l)/2;
+            if(nums[mid]==target) return mid;
+            else if(nums[l]<=nums[mid]){
+                if(nums[l]<=target and nums[mid]>=target){
+                    e=mid-1;
+                }
+                else{
+                    l=mid+1;
+                }
             }
             else{
-                if(arr[mid]<=target and target<=arr[k]){
+                if(nums[mid]<=target and nums[e]>=target){
                     l=mid+1;
                 }
                 else{
-                    k=mid-1;
+                    e=mid-1;
                 }
             }
         }
