@@ -10,7 +10,7 @@ public:
             }
         }
         for(int i=0;i<s.length();i++){
-            if(char(hash[s[i]]!=t[i]))return false;
+            if((hash[s[i]]!=t[i]))return false;
         }
         return true;
     }
