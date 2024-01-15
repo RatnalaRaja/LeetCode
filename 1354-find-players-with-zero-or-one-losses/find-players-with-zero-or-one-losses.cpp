@@ -1,13 +1,13 @@
 class Solution {
 public:
-    std::vector<std::vector<int>> findWinners(std::vector<std::vector<int>>& matches) {
-        std::unordered_map<int, int> win, loose;
+    vector<vector<int>> findWinners(vector<vector<int>>& matches) {
+        unordered_map<int, int> win, loose;
         for (auto i = 0; i < matches.size(); i++) {
             win[matches[i][0]]++;
             loose[matches[i][1]]++;
         }
         
-        std::vector<int> one, zero;
+        vector<int> one, zero;
         auto i = loose.begin();
         while (i != loose.end()) {
             if (i->second == 1) one.push_back(i->first);
@@ -20,10 +20,10 @@ public:
             j++;
         }
         
-        std::sort(zero.begin(), zero.end());
-        std::sort(one.begin(), one.end());
+        sort(zero.begin(), zero.end());
+        sort(one.begin(), one.end());
         
-        std::vector<std::vector<int>> ans;
+        vector<vector<int>> ans;
         ans.push_back(zero);
         ans.push_back(one);
         return ans;
