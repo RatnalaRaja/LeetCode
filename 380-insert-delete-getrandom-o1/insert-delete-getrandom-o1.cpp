@@ -1,49 +1,37 @@
 class RandomizedSet {
-    vector<int> v;
-    unordered_map<int,int> mp;
+    unordered_set<int>s;
 public:
-   
     RandomizedSet() {
+       
     }
-
-    bool search(int val){
-
-         if(mp.find(val)!=mp.end())
-            return true;
-         return false;
-
-    }
-
     
     bool insert(int val) {
-
-        if(search(val))
-            return false;
-
-        v.push_back(val);
-        mp[val] = v.size()-1;
-        return true;
+        if(s.find(val)!=s.end())return 0;
+        else {
+          
+           s.insert(val);
+            return 1;
+        }
     }
-
     
     bool remove(int val) {
-
-        if(!search(val))
-            return false;
-
-       
-        auto it = mp.find(val);
-        v[it->second] = v.back();
-        v.pop_back();
-        mp[v[it->second]] = it->second;
-        mp.erase(val);
-        return true;
+        if(s.find(val)==s.end())return 0;
+        else {
+           
+            s.erase(val);
+            return 1;
+        }
     }
-
-   
+    
     int getRandom() {
-
-        return v[rand()%v.size()];
+        return *next(s.begin(),rand()%s.size()); //hehe kaisa laga mera mazak
     }
 };
 
+/**
+ * Your RandomizedSet object will be instantiated and called as such:
+ * RandomizedSet* obj = new RandomizedSet();
+ * bool param_1 = obj->insert(val);
+ * bool param_2 = obj->remove(val);
+ * int param_3 = obj->getRandom();
+ */
