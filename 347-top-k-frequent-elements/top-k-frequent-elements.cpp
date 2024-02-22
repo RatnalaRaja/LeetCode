@@ -5,9 +5,9 @@ static bool cmp(pair<int,int >& a, pair<int,int >& b) {
 }
     vector<int> topKFrequent(vector<int>& nums, int k) {
         vector<int>v;
-        map<int,int>ma;
-        for(int i=0;i<nums.size();i++){
-            ma[nums[i]]++;
+        unordered_map<int,int>ma;
+        for(auto &i: nums){
+            ma[i]++;
         }   
         vector<pair<int,int>> f ;
         for(auto &i: ma) {
