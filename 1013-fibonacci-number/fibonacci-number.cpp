@@ -1,15 +1,11 @@
 class Solution {
 public:
+    int fib(int N) {
+         if(N <= 1)return N;
+   int last = fib(N-1);
+   int slast = fib(N-2);
+   
+   return last + slast;
 
-    int helper(int n,vector<int>&dp){
-        if(n<=1)return n;
-        if(dp[n]!=-1)return dp[n];
-        return dp[n]=helper(n-1,dp)+helper(n-2,dp);
-    }
-    int fib(int n) {
-        vector<int>dp(n+1,-1);
-        if(n<=1)return n;
-        helper(n,dp);
-        return dp[n];
-    }
+}
 };
