@@ -1,27 +1,24 @@
-
 class Solution {
 public:
-  int minEatingSpeed(vector<int>& piles, int h) {
-        auto feasible = [&](int speed) -> bool {
-            int time = 0;
-            for (int i : piles) {
-                time += (i - 1) / speed + 1;
+    int minEatingSpeed(vector<int>& piles, int h) {
+        int start = 1;
+        int end = *max_element(piles.begin(),piles.end());
+        while(start < end)
+        {
+            int mid = start + (end - start)/2;
+            int total = 0;
+            for(int pile : piles)
+            {
+                total = total + ceil((double)pile / mid);
             }
-            return time <= h;
-        };
-
-        int left = 1;
-        int right = *max_element(piles.begin(), piles.end());
-
-        while (left < right) {
-            int mid = left + (right - left) / 2;
-            if (feasible(mid)) {
-                right = mid;
-            } else {
-                left = mid + 1;
+            if(total > h)
+            {
+                start = mid + 1;
+            }
+             else {
+                end = mid;
             }
         }
-
-        return left;
+        return start;
     }
 };
