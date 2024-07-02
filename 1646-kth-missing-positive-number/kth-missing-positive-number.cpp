@@ -1,20 +1,11 @@
 class Solution {
 public:
-    int findKthPositive(std::vector<int>& arr, int k) {
-        vector<int> missingNumbers;
-        int expectedNumber = 1;
+    int findKthPositive(vector<int>& A, int k) {
+
+        for (auto& x : A) 
+            if (x <= k)  k++;
+            else break;
         
-        for (int num : arr) {
-            while (expectedNumber < num) {
-                missingNumbers.push_back(expectedNumber);
-                expectedNumber++;
-            }
-            expectedNumber++;
-        }
-        while (missingNumbers.size() < k) {
-            missingNumbers.push_back(expectedNumber++);
-        }
-        
-        return missingNumbers[k - 1];
+        return k;
     }
 };
