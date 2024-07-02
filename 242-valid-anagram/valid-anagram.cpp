@@ -1,15 +1,8 @@
 class Solution {
 public:
-    void sortString(string &str)
-{
-   sort(str.begin(), str.end());
-   cout << str;
-}
     bool isAnagram(string s, string t) {
-        sortString(s);
-        sortString(t);
-        if(s==t)
-            return true;
-        return false;
+        sort(s.begin(),s.end());
+        sort(t.begin(),t.end());
+        return s==t;
     }
 };
