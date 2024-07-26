@@ -11,24 +11,25 @@
  */
 class Solution {
 public:
-    void solve(TreeNode* root,int &res,int &sum,int &count){
+    void sumconti(TreeNode* root,int & result,int &sum,int &count){
         if(root==NULL){
             sum=0;
             count=0;
             return;
         }
         int left=0,right=0,lsum=0,rsum=0;
-        solve(root->left,res,lsum,left);
-        solve(root->right,res,rsum,right);
+        sumconti(root->left,result,lsum,left);
+        sumconti(root->right,result,rsum,right);
+
         sum=lsum+rsum+root->val;
         count=left+right+1;
-        if((sum/count)==root->val)res++;
+        if((sum/count)==root->val)result++;
     }
     int averageOfSubtree(TreeNode* root) {
-        int res=0;
         int sum=0;
         int count=0;
-        solve(root,res,sum,count);
-        return res;
+        int rs=0;
+        sumconti(root,rs,sum,count);
+        return rs;
     }
 };
