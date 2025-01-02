@@ -1,29 +1,15 @@
 class Solution {
 public:
-    int binarysear(vector<int>v,int start,int target){
-        int e=v.size()-1;
-        int mid=start+(e-start)/2;
-        while(start<=e){
-            if(v[mid]==target){
-                return mid;
+    int findPairs(vector<int>& nums, int k) {
+        unordered_map<int,int>mp;
+        int c=0;
+        for(auto &i:nums)mp[i]++;
+        for(auto&i:mp){
+            if(k==0){
+                if(i.second>1)c++;
             }
-            else if(v[mid]>target){
-                e=mid-1;
-            }
-            else{
-                start=mid+1;
-            }
-            mid=start+(e-start)/2;
+            else {if(mp.count(i.first+k))c++;}
         }
-        return -1;
-
-    }
-    int findPairs(vector<int>& nu, int k) {
-        sort(nu.begin(),nu.end());
-        set<int>s;
-        for(int i=0;i<nu.size();i++){
-            if(binarysear(nu,i+1,nu[i]+k)!=-1)s.insert(nu[i]+k);
-        }
-    return s.size();
+        return c;
     }
 };
